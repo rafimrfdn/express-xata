@@ -2,10 +2,10 @@
     "name": "express-mvc-kelasterbuka",
     "version": "1.0.0",
     "description": "",
-    "main": "app.js",
+    "main": "index.js",
     "type": "module",
     "scripts": {
-        "dev": "nodemon app.js"
+        "dev": "nodemon index.js"
     },
     "dependencies": {
         "@xata.io/cli": "^0.15.11",
