@@ -37,3 +37,4 @@ app.listen(port, () => {
 });
 
 //export { app, port, userRoutes };
+module.exports = app;
