@@ -1,18 +1,20 @@
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
+import { load } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
+const env = await load();
 
 const insertUser = async (user) => {
   const options = {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.XATA_API_KEY}`,
+      Authorization: `Bearer ${env.XATA_API_KEY}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(user)
   };
 
-  const response = await fetch(`${process.env.XATA_DATABASE_URL}/data?columns=id`, options);
+  const response = await fetch(`${env.XATA_DATABASE_URL}/data?columns=id`, options);
   return response;
 }
 
@@ -21,7 +23,7 @@ const fetchAllUsers = async () => {
   const options = {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.XATA_API_KEY}`,
+      Authorization: `Bearer ${env.XATA_API_KEY}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -31,7 +33,7 @@ const fetchAllUsers = async () => {
   };
 
   try {
-    const response = await fetch(`${process.env.XATA_DATABASE_URL}/query`, options);
+    const response = await fetch(`${env.XATA_DATABASE_URL}/query`, options);
     if (!response.ok) {
       throw new Error(`Failed to get users: ${await response.text()}`); // Throw an error with details
     }
@@ -46,12 +48,12 @@ const fetchUserById = async (id) => {
   const options = {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${process.env.XATA_API_KEY}`,
+      Authorization: `Bearer ${env.XATA_API_KEY}`,
       'Content-Type': 'application/json'
     }
   };
 
-    const response = await fetch(`${process.env.XATA_DATABASE_URL}/data/${id}`, options);
+    const response = await fetch(`${env.XATA_DATABASE_URL}/data/${id}`, options);
   if (!response.ok) {
     throw new Error(`Failed to get user: ${await response.text()}`);
   }
@@ -63,14 +65,14 @@ const updateExistingUser = async (id, updateData) => {
   const options = {
     method: 'PATCH',
     headers: {
-      Authorization: `Bearer ${process.env.XATA_API_KEY}`,
+      Authorization: `Bearer ${env.XATA_API_KEY}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(updateData)
   };
 
 
-    const response = await fetch(`${process.env.XATA_DATABASE_URL}/data/${id}?columns=id`, options);
+    const response = await fetch(`${env.XATA_DATABASE_URL}/data/${id}?columns=id`, options);
   return response;
 }
 
@@ -80,13 +82,13 @@ const removeUser = async (id) => {
   const options = {
     method: 'DELETE',
     headers: {
-      Authorization: `Bearer ${process.env.XATA_API_KEY}`,
+      Authorization: `Bearer ${env.XATA_API_KEY}`,
       'Content-Type': 'application/json'
     }
   };
 
 
-    const response = await fetch(`${process.env.XATA_DATABASE_URL}/data/${id}?columns=id`, options);
+    const response = await fetch(`${env.XATA_DATABASE_URL}/data/${id}?columns=id`, options);
   return response;
 }
 

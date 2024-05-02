@@ -1,11 +1,11 @@
-import express from 'express';
-import path from 'path'; // To resolve file paths
-import bodyParser from 'body-parser'; // For parsing request bodies
+import express from 'npm:express@4.18.2';
+import path from 'npm:path@0.12.7'; // To resolve file paths
+import bodyParser from "npm:body-parser@1.20.2";
 import userRoutes from './src/routes/userRoutes.js';
 
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = Deno.env.PORT || 3000;
 
 // Use body-parser middleware to parse incoming JSON data
 app.use(bodyParser.json());
@@ -36,5 +36,5 @@ app.listen(port, () => {
   console.log(`server run di localhost port ${port}`);
 });
 
-//export { app, port, userRoutes };
-module.exports = app;
+export { app, port, userRoutes };
+//module.exports = app;
