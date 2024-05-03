@@ -8,7 +8,8 @@ const createUser = async (req, res) => {
 
     const response = await insertUser(user);
     if (response.ok) {
-      res.json({ message: 'User created successfully!', userId: response.id });
+      //res.json({ message: 'User created successfully!', userId: response.id });
+      res.redirect("userAll");
     } else {
       console.error('Error creating user:', await response.json());
       res.status(response.status).json({ message: 'An error occurred.' });
@@ -16,16 +17,6 @@ const createUser = async (req, res) => {
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ message: 'Internal server error.' });
-  }
-};
-
-const getAllUsers = async (req, res) => {
-  try {
-    const users = await fetchAllUsers();
-    return res.render('userAll', { users });
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).render('error', { message: 'Internal server error.' });
   }
 };
 
@@ -64,12 +55,24 @@ const updateUser = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await fetchAllUsers();
+    return res.render('userAll', { users });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).render('error', { message: 'Internal server error.' });
+  }
+};
+
+
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
     const response = await removeUser(id);
     if (response.ok) {
-      res.json({ message: 'User deleted successfully!' });
+       //res.json({ message: 'User deleted successfully!' });
+       res.json();
     } else {
       console.error('Error deleting user:', await response.json());
       res.status(response.status).json({ message: 'An error occurred.' });
