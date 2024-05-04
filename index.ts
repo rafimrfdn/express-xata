@@ -2,7 +2,10 @@ import express from 'npm:express@4.18.2';
 import path from 'npm:path@0.12.7'; // To resolve file paths
 import bodyParser from "npm:body-parser@1.20.2";
 import userRoutes from './src/routes/userRoutes.js';
-import * as ejs from "https://deno.land/x/dejs@0.10.3/mod.ts";
+
+
+const { cwd, stdout, copy } = Deno;
+import ejs from "https://deno.land/x/dejs@0.10.3/mod.ts";
 
 // import * as mod from "https://deno.land/std@0.224.0/dotenv/mod.ts";
 
@@ -32,6 +35,9 @@ app.get('*', (req, res) => {
 // Set view engine to EJS
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('./src/views'));
+
+// const output = await renderFile(`${cwd()}/src/views/index.ejs`);
+// await copy(output, stdout);
 
 // Error handling middleware (optional)
 app.use((err, req, res, next) => {
