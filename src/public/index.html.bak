@@ -3,20 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css"> -->
-  <link rel="stylesheet" href="/simple.min.css">
+  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
   <title>Xata User Insertion with Htmx</title>
-    <style>
-        tr.htmx-swapping td {
-            opacity: 0;
-            transition: opacity 1s ease-out;
-        }
-    </style>
-  <script src="/htmx.min.js"></script>
 </head>
 <body>
         <div id="tableandform">
-            <h1>ejs index Create User</h1>
+  <h1>Create User</h1>
             <form hx-target="#tableandform" hx-post="/users/create-user">
                 <label for="nama">Name:</label>
                 <input type="text" name="nama" id="nama" placeholder="Enter your name">
@@ -30,17 +22,16 @@
                 <button type="submit" >Submit</button>
             </form>
 
-            <div id="mytable">
-                <div  hx-get="/users/all"  hx-trigger="load"></div>
 
-                <div id="update"></div>
-            </div>
+            <div hx-get="/users/all"  hx-trigger="load"></div>
+
+            <div id="update"></div>
         </div>
 
   <div id="result"></div>
 
   <div id="delete"></div>
 
-  <!-- <script src="https://unpkg.com/htmx.org@1.9.12"></script> -->
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
 </body>
 </html>

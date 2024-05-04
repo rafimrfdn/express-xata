@@ -8,7 +8,8 @@ const createUser = async (req, res) => {
 
     const response = await insertUser(user);
     if (response.ok) {
-      res.json({ message: 'User created successfully!', userId: response.id });
+      // res.json({ message: 'User created successfully!', userId: response.id });
+      res.redirect("userAll");
     } else {
       console.error('Error creating user:', await response.json());
       res.status(response.status).json({ message: 'An error occurred.' });
@@ -53,7 +54,9 @@ const updateUser = async (req, res) => {
 
     const response = await updateExistingUser(id, updateData);
     if (response.ok) {
-      res.send(`Data with id ${id} successfully updated with name: ${nama} and email: ${email}`);
+      // res.send(`Data with id ${id} successfully updated with name: ${nama} and email: ${email}`);
+      // res.send(`Data berhasil diedit`);
+      res.send(`Data berhasil diedit. <a hx-get="/users/all" hx-target="#mytable" >Reload table</a>`);
     } else {
       console.error('Error updating user:', await response.text());
       res.status(response.status).json({ message: 'An error occurred.' });
@@ -69,7 +72,8 @@ const deleteUser = async (req, res) => {
     const { id } = req.params;
     const response = await removeUser(id);
     if (response.ok) {
-      res.json({ message: 'User deleted successfully!' });
+      // res.json({ message: 'User deleted successfully!' });
+      res.json();
     } else {
       console.error('Error deleting user:', await response.json());
       res.status(response.status).json({ message: 'An error occurred.' });

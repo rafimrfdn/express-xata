@@ -9,6 +9,7 @@ import { createUser,
 
 const router = express.Router();
 
+router.get('/index');
 
 router.post('/create-user', createUser);
 router.get('/all', getAllUsers);

@@ -2,10 +2,17 @@ import express from 'npm:express@4.18.2';
 import path from 'npm:path@0.12.7'; // To resolve file paths
 import bodyParser from "npm:body-parser@1.20.2";
 import userRoutes from './src/routes/userRoutes.js';
+import * as ejs from "https://deno.land/x/dejs@0.10.3/mod.ts";
+
+// import * as mod from "https://deno.land/std@0.224.0/dotenv/mod.ts";
+
+import { load } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
+const env = await load();
 
 const app = express();
 
-const port = Deno.env.PORT || 3000;
+// const port = Deno.env.PORT || 3001;
+const port = env.PORT || 3001;
 
 // Use body-parser middleware to parse incoming JSON data
 app.use(bodyParser.json());

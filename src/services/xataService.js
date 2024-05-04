@@ -1,6 +1,3 @@
-// import dotenv from 'dotenv';
-// dotenv.config();
-
 import { load } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
 const env = await load();
 
@@ -52,7 +49,6 @@ const fetchUserById = async (id) => {
       'Content-Type': 'application/json'
     }
   };
-
     const response = await fetch(`${env.XATA_DATABASE_URL}/data/${id}`, options);
   if (!response.ok) {
     throw new Error(`Failed to get user: ${await response.text()}`);
@@ -70,8 +66,6 @@ const updateExistingUser = async (id, updateData) => {
     },
     body: JSON.stringify(updateData)
   };
-
-
     const response = await fetch(`${env.XATA_DATABASE_URL}/data/${id}?columns=id`, options);
   return response;
 }
@@ -86,8 +80,6 @@ const removeUser = async (id) => {
       'Content-Type': 'application/json'
     }
   };
-
-
     const response = await fetch(`${env.XATA_DATABASE_URL}/data/${id}?columns=id`, options);
   return response;
 }
