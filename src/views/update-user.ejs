@@ -1,6 +1,6 @@
 <h1>Update User</h1>
 
-  <form hx-patch="/users/users/<%= user.id %>" hx-swap="outerHTML" > <!-- Changed hx-patch to POST -->
+  <form hx-patch="/users/users/<%= user.id %>" > <!-- Changed hx-patch to POST -->
     <label for="nama">Nama:</label>
     <input type="text" id="nama" name="nama" value="<%= user.nama %>">
     <br>
